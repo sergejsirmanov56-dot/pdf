@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
@@ -99,6 +99,65 @@
     </a>
 
 </div>
+
+</body>
+</html> -->
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скачать файл</title>
+</head>
+<body>
+
+<button id="downloadBtn">Скачать</button>
+
+<script>
+    const downloadBtn = document.getElementById('downloadBtn');
+
+    downloadBtn.addEventListener('click', async () => {
+        const publicKey = 'https://disk.yandex.ru/i/X-SuBYvRp5zOMQ';
+
+        const apiUrl =
+            'https://cloud-api.yandex.net/v1/disk/public/resources/download' +
+            '?public_key=' + encodeURIComponent(publicKey);
+
+        try {
+            downloadBtn.disabled = true;
+            downloadBtn.textContent = 'Подготовка...';
+
+            const response = await fetch(apiUrl, {
+                method: 'GET'
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP ошибка: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            if (!data.href) {
+                throw new Error('В ответе отсутствует href');
+            }
+
+            // Переход по полученной ссылке
+            window.location.href = data.href;
+
+        } catch (error) {
+            console.error(error);
+            alert('Не удалось получить ссылку на скачивание');
+        } finally {
+            downloadBtn.disabled = false;
+            downloadBtn.textContent = 'Скачать';
+        }
+    });
+</script>
 
 </body>
 </html>
