@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Руководство по эксплуатации</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f5f5f5;
+            font-family: Arial, sans-serif;
+            color: #222;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            padding: 40px 25px;
+            text-align: center;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        .icon {
+            font-size: 50px;
+            margin-bottom: 15px;
+        }
+
+        h1 {
+            font-size: 26px;
+            margin-bottom: 12px;
+        }
+
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .button {
+            display: block;
+            padding: 15px;
+            margin: 12px 0;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .open {
+            background: #222;
+            color: white;
+        }
+
+        .download {
+            background: #eeeeee;
+            color: #222;
+        }
+
+        .button:active {
+            transform: scale(0.98);
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="icon">📖</div>
+
+    <h1>Руководство по эксплуатации</h1>
+
+    <p>
+        PDF-документ доступен для просмотра и скачивания.
+    </p>
+
+    <a
+        class="button open"
+        href="view.html"
+        target="_blank"
+    >
+        Открыть руководство
+    </a>
+
+    <a
+        class="button download"
+        href="Руководство%20по%20эксплуатации.pdf"
+        download
+    >
+        Скачать PDF
+    </a>
+
+</div>
+
+</body>
+</html>
