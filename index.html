@@ -116,83 +116,12 @@
 </head>
 <body>
 
-<button id="downloadBtn">Скачать PDF</button>
-
-<script>
-const PUBLIC_KEY = 'https://disk.yandex.ru/i/X-SuBYvRp5zOMQ';
-
-document.getElementById('downloadBtn').addEventListener('click', async function () {
-    const button = this;
-
-    try {
-        button.disabled = true;
-        button.textContent = 'Получение ссылки...';
-
-        // 1. Получаем временную ссылку
-        const apiUrl =
-            'https://cloud-api.yandex.net/v1/disk/public/resources/download' +
-            '?public_key=' + encodeURIComponent(PUBLIC_KEY);
-
-        const response = await fetch(apiUrl);
-
-        if (!response.ok) {
-            throw new Error(`Ошибка API: HTTP ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (!data.href) {
-            throw new Error('Яндекс.Диск не вернул href');
-        }
-
-        console.log('Download URL:', data.href);
-
-        // 2. Скачиваем файл по полученному href
-        button.textContent = 'Скачивание...';
-
-        const fileResponse = await fetch(data.href);
-
-        if (!fileResponse.ok) {
-            throw new Error(
-                `Ошибка скачивания: HTTP ${fileResponse.status}`
-            );
-        }
-
-        // 3. Получаем файл как Blob
-        const blob = await fileResponse.blob();
-
-        // 4. Создаём временную ссылку
-        const blobUrl = URL.createObjectURL(blob);
-
-        // 5. Запускаем скачивание
-        const link = document.createElement('a');
-
-        link.href = blobUrl;
-        link.download = 'Руководство по эксплуатации.pdf';
-
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
-
-        // 6. Освобождаем память
-        setTimeout(() => {
-            URL.revokeObjectURL(blobUrl);
-        }, 1000);
-
-    } catch (error) {
-        console.error('Ошибка:', error);
-
-        alert(
-            'Не удалось скачать файл.\n\n' +
-            error.message
-        );
-
-    } finally {
-        button.disabled = false;
-        button.textContent = 'Скачать PDF';
-    }
-});
-</script>
+<a
+    href="https://disk.yandex.ru/i/X-SuBYvRp5zOMQ"
+    target="_blank"
+>
+    Скачать PDF
+</a>
 
 </body>
 </html>
